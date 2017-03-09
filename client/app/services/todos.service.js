@@ -9,28 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var todos_service_1 = require("../services/todos.service");
-var TodosComponent = (function () {
-    function TodosComponent(_todoService) {
-        this._todoService = _todoService;
+var http_1 = require("@angular/http");
+require("rxjs/add/operator/map");
+var TodoService = (function () {
+    function TodoService(_http) {
+        this._http = _http;
     }
-    TodosComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.todos = [];
-        this._todoService.getTodos()
-            .subscribe(function (todos) {
-            _this.todos = todos;
-        });
+    TodoService.prototype.getTodos = function () {
+        return this._http.get('/api/v1/todos')
+            .map(function (res) { return res.json(); });
     };
-    return TodosComponent;
+    return TodoService;
 }());
-TodosComponent = __decorate([
-    core_1.Component({
-        moduleId: module.id,
-        selector: 'todos',
-        templateUrl: 'todos.component.html'
-    }),
-    __metadata("design:paramtypes", [todos_service_1.TodoService])
-], TodosComponent);
-exports.TodosComponent = TodosComponent;
-//# sourceMappingURL=todos.component.js.map
+TodoService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], TodoService);
+exports.TodoService = TodoService;
+//# sourceMappingURL=todos.service.js.map
