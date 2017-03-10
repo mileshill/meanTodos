@@ -2,7 +2,8 @@
 
 **MEAN Todos** is a TODO app built using the MEAN stack. 
 
-. MongoDB (mlab)
-. Angular 2
-. Express
+1. MongoDB (mlab)
+2. Angular 2
+3. Express
+4. AWS
 
